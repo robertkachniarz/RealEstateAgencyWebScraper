@@ -13,7 +13,7 @@ public class WebsiteDownloader {
         try {
             this.doc = Jsoup.connect(url).get();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Nie pobrało poprawnie strony");
         }
     }
 

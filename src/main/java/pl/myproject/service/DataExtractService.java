@@ -29,4 +29,9 @@ public class DataExtractService {
         }
         return words;
     }
+
+    public static List<String> getTheSmallestTextFromSource(Document document, String parameter1, String parameter2, String attribute){
+        List<String> result = getAttributesFromElements(getElementsFromElements(getElementsByClass(document,parameter1),parameter2),attribute);
+        return result;
+    }
 }
