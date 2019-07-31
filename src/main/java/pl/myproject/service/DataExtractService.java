@@ -21,4 +21,12 @@ public class DataExtractService {
         }
         return words;
     }
+
+    public static List<String> getAttributesFromElements(Elements elements, String attribute) {
+        List<String> words = new ArrayList<>();
+        for (Element e:elements) {
+            words.add(e.attr(attribute));
+        }
+        return words;
+    }
 }

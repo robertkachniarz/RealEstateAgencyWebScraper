@@ -19,7 +19,7 @@ public class DataExtractServiceTest {
 
     @Before
     public void setup(){
-        WebsiteDownloader websiteDownloader = new WebsiteDownloader("https://tabelaofert.pl/indeks-agencji");
+        WebsiteDownloader websiteDownloader = new WebsiteDownloader("https://tabelaofert.pl/indeks-agencji/Ś");
         document = websiteDownloader.getDoc();
     }
 
@@ -62,5 +62,19 @@ public class DataExtractServiceTest {
 
         //then
         Assertions.assertThat(letters).isEqualTo(Arrays.asList("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "Ł", "M", "N", "O", "P", "R", "S", "Ś", "T", "U", "V", "W", "Y", "Z", "0-9"));
+    }
+
+    @Test
+    public void shouldReturnListOfAttributesFromElements(){
+        //given
+        Elements links = DataExtractService.getElementsByClass(document,"link-oferta");
+        String attribute = "href";
+
+        //when
+        List<String> listLinks = DataExtractService.getAttributesFromElements(links,attribute);
+
+        //then
+        Assertions.assertThat(listLinks).isEqualTo(Arrays.asList("/swiatnieruchomosci", "/skwarcow"));
+
     }
 }
