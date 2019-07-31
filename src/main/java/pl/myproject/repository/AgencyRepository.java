@@ -22,4 +22,11 @@ public class AgencyRepository {
     public void addAgency(RealEstateAgency realEstateAgency){
         this.agenciesRepository.add(realEstateAgency);
     }
+
+    @Override
+    public String toString() {
+        return "AgencyRepository{" +
+                "agenciesRepository=" + agenciesRepository +
+                '}';
+    }
 }
