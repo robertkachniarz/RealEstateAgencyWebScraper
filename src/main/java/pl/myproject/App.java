@@ -9,21 +9,12 @@ public class App {
     public static void start() {
         String url = "https://tabelaofert.pl";
         WebsiteDownloader downloader = new WebsiteDownloader("https://tabelaofert.pl/indeks-agencji");
-        /*Elements pagins = DataExtractService.getElementsByClass(downloader.getDoc(),"paginator");
-        Elements linksLi = DataExtractService.getElementsFromElements(pagins, "a[href]");
-        List<String> letters = DataExtractService.getAttributesFromElements(linksLi, "href");*/
-
         List<String> letters = DataExtractService.getTheSmallestTextFromSource(downloader.getDoc(),"paginator","a[href]","href");
-
         List<String> agenciesUrl;
 
         for (String str:letters) {
             String url2 = url + str;
             WebsiteDownloader downloader2 = new WebsiteDownloader(url2);
-            /*Elements agenciesDivs = DataExtractService.getElementsByClass(downloader2.getDoc(), "firma-item");
-            Elements agenciesLinks = DataExtractService.getElementsFromElements(agenciesDivs,"a");
-            agenciesUrl = DataExtractService.getAttributesFromElements(agenciesLinks,"href");*/
-
             agenciesUrl = DataExtractService.getTheSmallestTextFromSource(downloader2.getDoc(),"firma-item","a","href");
 
             for (String addr:agenciesUrl) {
