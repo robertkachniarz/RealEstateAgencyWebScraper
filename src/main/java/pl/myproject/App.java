@@ -9,13 +9,14 @@ import pl.myproject.service.OutputPDF;
 
 import java.util.List;
 
-public class App {
-    public static void start() {
+class App {
+    static void start() {
         AgencyRepository repository = new AgencyRepository();
         String url = "https://tabelaofert.pl";
         WebsiteDownloader downloader = new WebsiteDownloader("https://tabelaofert.pl/indeks-agencji");
         List<String> letters = DataExtractService.getTheSmallestTextFromSource(downloader.getDoc(),"paginator","a[href]","href");
         List<String> agenciesUrl;
+        int counter = 0;
 
         for (String str:letters) {
             String url2 = url + str;
@@ -32,6 +33,8 @@ public class App {
                     String agencyPhone = element.getElementsByClass("telefon-ukryty").attr("data-telefon");
                     RealEstateAgency realEstateAgency = new RealEstateAgency(agencyName, agencyAddress, agencyPhone);
                     repository.addAgency(realEstateAgency);
+                    counter++;
+                    System.out.println("Pobrano dane: " + counter + " agencji nieruchomości.");
                 } catch (NullPointerException e){
                     System.out.println("Nie znalaziono elementu 'oddzial centrala' pod adresem " + url3);
                 }
