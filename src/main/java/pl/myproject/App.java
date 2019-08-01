@@ -5,6 +5,8 @@ import pl.myproject.model.RealEstateAgency;
 import pl.myproject.model.WebsiteDownloader;
 import pl.myproject.repository.AgencyRepository;
 import pl.myproject.service.DataExtractService;
+import pl.myproject.service.OutputPDF;
+
 import java.util.List;
 
 public class App {
@@ -35,5 +37,8 @@ public class App {
                 }
             }
         }
+
+        OutputPDF.createFile(repository);
+
     }
 }
