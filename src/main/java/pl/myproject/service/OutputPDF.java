@@ -36,7 +36,6 @@ public class OutputPDF {
             PdfWriter.getInstance(document, new FileOutputStream(FILE));
             document.open();
             document.add(new Chunk());
-            //document.add(new Paragraph("ąśćńółężź bla", font));
             addContent(document, repository);
             document.close();
         }
