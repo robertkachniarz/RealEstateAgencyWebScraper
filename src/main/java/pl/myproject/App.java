@@ -6,7 +6,9 @@ import pl.myproject.model.WebsiteDownloader;
 import pl.myproject.repository.AgencyRepository;
 import pl.myproject.service.DataExtractService;
 import pl.myproject.service.OutputPDF;
+import pl.myproject.service.OutputXLSX;
 
+import java.io.IOException;
 import java.util.List;
 
 class App {
@@ -42,6 +44,11 @@ class App {
         }
 
         OutputPDF.createFile(repository);
+        try {
+            OutputXLSX.createFileXLSX(repository);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 }
