@@ -28,7 +28,7 @@ public class ExtractionFromTabelaOfertPlWebsite {
                 try {
                     Element element = downloadAgencySite.getDoc().getElementsByClass("oddzial centrala").first();
                     String agencyName = element.select("h3").toString().split("<br>")[0].split("<h3>")[1];
-                    String agencyAddress = element.select("h3").toString().split("<br>")[1].split("</h3>")[0];
+                    String agencyAddress = element.select("h3").toString().split("<br>")[1].split("</h3>")[0].replace("&nbsp;", " ");
                     String agencyPhone = element.getElementsByClass("telefon-ukryty").attr("data-telefon");
                     RealEstateAgency realEstateAgency = new RealEstateAgency(agencyName, agencyAddress, agencyPhone);
                     repository.addAgency(realEstateAgency);
